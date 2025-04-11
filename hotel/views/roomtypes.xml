@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hotel_roomtypes_list" model="ir.ui.view">
+        <field name="name">hotel.roomtypes.list</field>
+        <field name="model">hotel.roomtypes</field>
+        <field name="arch" type="xml">
+            <list string="Room Types List">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="daily_charges"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_hotel_roomtypes_form" model="ir.ui.view">
+        <field name="name">hotel.roomtypes.form</field>
+        <field name="model">hotel.roomtypes</field>
+        <field name="arch" type="xml">
+            <form string="Room Types Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                    <notebook>
+                        <page string="Daily Charges">
+                            <field name="daily_charges"/>
+                        </page>
+                        <page string="Images">
+                            <group>
+                                <field name="room_image" widget="image" options="{'preview_image': 'room_image'}"/>
+                                <field name="bathroom_image" widget="image" options="{'preview_image': 'bathroom_image'}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_roomtypes" model="ir.actions.act_window">
+        <field name="name">Room Types</field>
+        <field name="res_model">hotel.roomtypes</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Create and Manage Room Types for the Hotel.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hotel_roomtypes"
+              name="Room Types"
+              parent="hotel.menu_hotel_masterlists"
+              action="action_hotel_roomtypes"/>
+</odoo>
